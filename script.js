@@ -110,10 +110,7 @@ function showDatePicker(type) {
       el.remove();
       addBotMessage(`Прекрасно, заказ сформирован: ${adults} взрослых${children>0?', '+children+' детских':''} билет${adults>1?'а':''}. Экскурсия пройдёт в апреле ${selDate} в ${selTime}. Осталось только оплатить.`);
       setTimeout(()=>{
-        addBotMessage('✅ Заказ сохранён! Детали брони придут на вашу почту.');
-        addButtons([
-          {label:'🏠 Главное меню', color:'yellow', action:()=>{clearChat();startChat();}},
-        ]);
+        showContactForm();
       }, 800);
     };
   }
@@ -287,11 +284,13 @@ function showDatePickerDates() {
 
 // ---- Screen: Personal scenario ----
 function screen_personal(type) {
+  pushHistory('main', showMainMenu);
   addBotMessage('Мы делаем более персональный сценарий и дополнительные элементы под вашу пару, квест, цветы, шары — всё как хотите. Это формат «вау» под повод: годовщина, сюрприз, предложение.');
   addButtons([
     {label:'Хочу узнать подробнее! Оставить заявку', color:'yellow', action:()=>{clearButtons();showLeadForm();}},
     {label:'📞 Переключить на оператора', color:'blue', action:()=>{clearButtons();screen_operator();}},
   ]);
+  addBackBtn(goBack);
 }
 
 function showLeadForm() {
@@ -306,6 +305,34 @@ function showLeadForm() {
   `;
   msgs.appendChild(form);
   scrollBottom();
+}
+
+function showContactForm() {
+  addBotMessage('Для завершения бронирования, пожалуйста, укажите ваши контактные данные. На эту почту придёт подтверждение заказа.');
+  const msgs = document.getElementById('chatMessages');
+  const form = document.createElement('div');
+  form.className = 'chat-form';
+  form.innerHTML = `
+    <input type="text" id="contactName" placeholder="Ваше имя" />
+    <input type="email" id="contactEmail" placeholder="Ваш e-mail" />
+    <button class="submit-btn" onclick="submitContact()">Оплатить и завершить →</button>
+  `;
+  msgs.appendChild(form);
+  scrollBottom();
+  addBackBtn(()=>{form.remove();clearChatBelow(form);goBack();});
+}
+
+function submitContact() {
+  const name = document.getElementById('contactName')?.value || '';
+  const email = document.getElementById('contactEmail')?.value || '';
+  if (!name || !email) { alert('Пожалуйста, заполните все поля'); return; }
+  formData = {name, email};
+  document.querySelector('.chat-form')?.remove();
+  document.querySelectorAll('.back-btn').forEach(el=>el.remove());
+  addBotMessage(`✅ Спасибо, ${name}! Заказ оформлен. Подтверждение отправлено на ${email}.`);
+  setTimeout(()=>{
+    addButtons([{label:'🏠 Главное меню', color:'yellow', action:()=>{clearChat();startChat();}}]);
+  }, 500);
 }
 
 function submitLead() {
@@ -332,14 +359,17 @@ function screen_events() {
 }
 
 function screen_corporate() {
+  pushHistory('main', showMainMenu);
   addBotMessage('Корпоративные мероприятия в «Сенсориуме» — это командный опыт, который объединяет и вдохновляет. Мы вмещаем до 120 человек на комбинированных мероприятиях и делаем их под ключ!');
   addButtons([
     {label:'Хочу узнать подробнее! Оставить заявку', color:'yellow', action:()=>{clearButtons();showLeadForm();}},
     {label:'📞 Переключить на оператора', color:'blue', action:()=>{clearButtons();screen_operator();}},
   ]);
+  addBackBtn(goBack);
 }
 
 function screen_eventsList() {
+  pushHistory('main', showMainMenu);
   addBotMessage('Выберите мероприятие, которое вас интересует:');
   addButtons([
     {label:'Мафия в темноте', color:'yellow', action:()=>{clearButtons();screen_event('mafia');}},
@@ -349,6 +379,7 @@ function screen_eventsList() {
     {label:'Гербарий в стекле', color:'green', action:()=>{clearButtons();screen_event('herbarium');}},
     {label:'Чайная церемония в темноте', color:'yellow', action:()=>{clearButtons();screen_event('tea');}},
   ]);
+  addBackBtn(goBack);
 }
 
 const eventTexts = {
@@ -361,6 +392,7 @@ const eventTexts = {
 };
 
 function screen_event(type) {
+  pushHistory('main', showMainMenu);
   addBotMessage(eventTexts[type]);
   addButtons([{label:'Интересно! 😊', color:'yellow', action:()=>{
     clearButtons();
@@ -370,10 +402,12 @@ function screen_event(type) {
       {label:'📞 Переключить на оператора', color:'blue', action:()=>{clearButtons();screen_operator();}},
     ]);
   }}]);
+  addBackBtn(goBack);
 }
 
 // ---- Screen: Operator ----
 function screen_operator() {
+  pushHistory('main', showMainMenu);
   addBotMessage('Скажи, пожалуйста, получилось ли у тебя найти ответ на свой вопрос?');
   addButtons([
     {label:'✅ Да, спасибо!', color:'green', action:()=>{
@@ -490,6 +524,15 @@ function scrollBottom() {
 function clearChat() {
   document.getElementById('chatMessages').innerHTML = '';
   history = [];
+}
+
+function clearChatBelow(element) {
+  const msgs = document.getElementById('chatMessages');
+  let found = false;
+  Array.from(msgs.children).forEach(child => {
+    if (found) child.remove();
+    if (child === element) found = true;
+  });
 }
 
 function pushHistory(screen, fn) {
