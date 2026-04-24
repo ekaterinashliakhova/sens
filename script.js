@@ -156,6 +156,7 @@ function screen_reviews(type) {
 // ---- Screen: Research ----
 function screen_research() {
   clearChat();
+  clearSlider();
   addBotMessage('Мы сотрудничаем с лучшими психологами, чтобы отдых у нас был незабываемым и полезным для гостей. После посещения Сенсориума мы пришлём анкету-исследование состояния. А пока вот несколько исследований, которые помогут сделать уверенный выбор.');
   const items = [
     {title:'Мелатонин и темнота', text:'Мозг вырабатывает мелатонин почти исключительно в темноте. Он регулирует восстановление клеток, иммунитет и процессы старения.', isResearch:true},
@@ -221,6 +222,7 @@ function screen_excursion() {
 // ---- Screen: FAQ ----
 function screen_faq() {
   clearChat();
+  clearSlider();
   addBotMessage('Я очень внимательно собираю вопросы от друзей темноты и всех, кто хотел бы ими стать. Ниже самые часто задаваемые вопросы:');
   
   // Добавляем слайдер с отзывами о FAQ
@@ -309,6 +311,7 @@ function faq_other() {
 // ---- Screen: Dates ----
 function screen_dates() {
   clearChat();
+  clearSlider();
   addBotMessage('Свидание в темноте — это особенный формат для двоих 💛 В темноте остаётся главное — голос, прикосновения, эмоции и внимание друг к другу. Такое свидание не сравнить с рестораном или кино. Его часто выбирают пары, которые хотят чего-то настоящего и необычного 😏 Давайте подберём день и время, чтобы всё сложилось идеально?');
   
   // Добавляем слайдер с отзывами о свиданиях
@@ -336,6 +339,7 @@ function showDatePickerDates() {
 // ---- Screen: Personal scenario ----
 function screen_personal(type) {
   clearChat();
+  clearSlider();
   addBotMessage('Мы делаем более персональный сценарий и дополнительные элементы под вашу пару, квест, цветы, шары — всё как хотите. Это формат «вау» под повод: годовщина, сюрприз, предложение.');
   addButtons([
     {label:'Хочу узнать подробнее! Оставить заявку', color:'yellow', action:()=>{clearButtons();showLeadForm();}},
@@ -345,6 +349,7 @@ function screen_personal(type) {
 }
 
 function showLeadForm() {
+  clearSlider();
   addBotMessage('Отлично 😊 Чтобы мы могли подобрать формат именно под вашу компанию и связаться в удобное время, мне понадобится совсем немного информации.');
   const msgs = document.getElementById('chatMessages');
   const form = document.createElement('div');
@@ -360,6 +365,7 @@ function showLeadForm() {
 }
 
 function showContactForm() {
+  clearSlider();
   addBotMessage('Для завершения бронирования, пожалуйста, укажите ваши контактные данные. На эту почту придёт подтверждение заказа.');
   const msgs = document.getElementById('chatMessages');
   const form = document.createElement('div');
@@ -401,6 +407,7 @@ function submitLead() {
 // ---- Screen: Events ----
 function screen_events() {
   clearChat();
+  clearSlider();
   addBotMessage('В «Сенсориуме» мероприятия — это не просто развлечения. Это форматы, где по-настоящему включаются чувства, внимание и живое общение. Выберите, что вам сейчас ближе:');
   
   // Добавляем слайдер с отзывами о мероприятиях
@@ -423,6 +430,7 @@ function screen_events() {
 
 function screen_corporate() {
   clearChat();
+  clearSlider();
   addBotMessage('Корпоративные мероприятия в «Сенсориуме» — это командный опыт, который объединяет и вдохновляет. Мы вмещаем до 120 человек на комбинированных мероприятиях и делаем их под ключ!');
   addButtons([
     {label:'Хочу узнать подробнее! Оставить заявку', color:'yellow', action:()=>{clearButtons();showLeadForm();}},
@@ -433,6 +441,7 @@ function screen_corporate() {
 
 function screen_eventsList() {
   clearChat();
+  clearSlider();
   addBotMessage('Выберите мероприятие, которое вас интересует:');
   addButtons([
     {label:'Мафия в темноте', color:'yellow', action:()=>{clearButtons();screen_event('mafia');}},
@@ -455,6 +464,8 @@ const eventTexts = {
 };
 
 function screen_event(type) {
+  clearChat();
+  clearSlider();
   pushHistory('main', showMainMenu);
   addBotMessage(eventTexts[type]);
   addButtons([{label:'Интересно! 😊', color:'yellow', action:()=>{
@@ -470,6 +481,8 @@ function screen_event(type) {
 
 // ---- Screen: Operator ----
 function screen_operator() {
+  clearChat();
+  clearSlider();
   pushHistory('main', showMainMenu);
   addBotMessage('Скажи, пожалуйста, получилось ли у тебя найти ответ на свой вопрос?');
   addButtons([
@@ -541,6 +554,10 @@ function clearButtons() {
   document.querySelectorAll('.current-buttons').forEach(el=>el.remove());
 }
 
+function clearSlider() {
+  document.querySelectorAll('.current-slider').forEach(el=>el.remove());
+}
+
 function addBackBtn(fn) {
   const msgs = document.getElementById('chatMessages');
   const btn = document.createElement('button');
@@ -554,7 +571,7 @@ function addBackBtn(fn) {
 function showSlider(items) {
   const msgs = document.getElementById('chatMessages');
   const wrap = document.createElement('div');
-  wrap.className = 'slider-wrap';
+  wrap.className = 'slider-wrap current-slider';
   const track = document.createElement('div');
   track.className = 'slider-track';
   items.forEach(item=>{
