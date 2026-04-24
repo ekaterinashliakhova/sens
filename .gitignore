@@ -1,1 +1,1 @@
-Nothing should be ignored based on the provided file changes. The only modified file is `script.js`, which is a source code file and should not be added to .gitignore.
+Nothing needs to be added to .gitignore since the changes only include documentation files (README.md and USER_GUIDE.md) which are source/config files and not build artifacts, dependencies, or temporary files.
