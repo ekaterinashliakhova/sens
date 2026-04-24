@@ -43,6 +43,7 @@ function screen_buyTicket(dateLabel) {
   pushHistory('main', showMainMenu);
   addBotMessage('Цена посещения начинается от 1500₽. Давайте выберем день, время и количество билетов!');
   setTimeout(()=>showDatePicker('excursion'), 500);
+  addBackBtn(goBack);
 }
 
 function showDatePicker(type) {
@@ -214,6 +215,7 @@ function faq_how() {
   addUserMessage('А как это проходит?');
   addBotMessage('Большинство форматов в «Сенсориуме» проходят в эталонной темноте в сопровождении проводника. Пространство безопасное и продуманное, а внимание постепенно переключается с внешнего мира на ощущения, звук и взаимодействие. Время в темноте ощущается совсем иначе — час пролетает как 15 минут!');
   addButtons([{label:'← Другие вопросы', color:'', action:()=>{clearButtons();screen_faq();}}]);
+  addBackBtn(goBack);
 }
 
 function faq_formats() {
@@ -221,6 +223,7 @@ function faq_formats() {
   addUserMessage('Какие форматы ещё есть?');
   addBotMessage('Отлично, рада, что вам интересно 💛 В «Сенсориуме» есть несколько форматов — под разный повод и компанию. Выберите формат, который вам сейчас ближе, а я подскажу детали и помогу с записью.');
   setTimeout(()=>screen_events(), 500);
+  addBackBtn(goBack);
 }
 
 function faq_video() {
@@ -237,6 +240,7 @@ function faq_video() {
   msgs.appendChild(wrap);
   scrollBottom();
   addButtons([{label:'← Другие вопросы', color:'', action:()=>{clearButtons();screen_faq();}}]);
+  addBackBtn(goBack);
 }
 
 function faq_safe() {
@@ -244,6 +248,7 @@ function faq_safe() {
   addUserMessage('Это безопасно?');
   addBotMessage('Да, абсолютно. Пространство музея продумано и адаптировано к передвижениям в темноте. Все мероприятия проходят в сопровождении проводников. Здесь нет резких элементов или неожиданностей, а формат создавался при участии экспертов и инклюзивных организаций.');
   addButtons([{label:'← Другие вопросы', color:'', action:()=>{clearButtons();screen_faq();}}]);
+  addBackBtn(goBack);
 }
 
 function faq_other() {
@@ -263,7 +268,9 @@ function faq_other() {
     addUserMessage(f.q);
     addBotMessage(f.a);
     addButtons([{label:'← Другие вопросы', color:'', action:()=>{clearButtons();screen_faq();}}]);
+    addBackBtn(goBack);
   }})));
+  addBackBtn(goBack);
 }
 
 // ---- Screen: Dates ----
@@ -305,6 +312,7 @@ function showLeadForm() {
   `;
   msgs.appendChild(form);
   scrollBottom();
+  addBackBtn(()=>{form.remove();clearChatBelow(form);goBack();});
 }
 
 function showContactForm() {
@@ -427,9 +435,11 @@ function screen_operator() {
           {label:'❌ Нет', color:'pink', action:()=>{clearButtons();addUserMessage('Нет');screen_operator();}},
           {label:'✍️ Оставить отзыв', color:'yellow', action:()=>{clearButtons();addUserMessage('Оставить отзыв');addBotMessage('Пожалуйста, напишите ваш отзыв в поле ввода ниже. Мы обязательно его рассмотрим!');}}
         ]);
+        addBackBtn(goBack);
       }, 1500);
     }},
   ]);
+  addBackBtn(goBack);
 }
 
 // ---- Helpers ----
