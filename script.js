@@ -42,7 +42,18 @@ function showMainMenu() {
 function screen_buyTicket(dateLabel) {
   pushHistory('main', showMainMenu);
   addBotMessage('Цена посещения начинается от 1500₽. Давайте выберем день, время и количество билетов!');
-  setTimeout(()=>showDatePicker('excursion'), 500);
+  
+  // Добавляем слайдер с отзывами о покупке билетов
+  setTimeout(()=>{
+    const buyTicketReviews = [
+      {place:'Яндекс Карты', name:'Александра В.', text:'Очень удобно покупать билеты через чат! Всё быстро и понятно. Рекомендую!', link:'#'},
+      {place:'Google Maps', name:'Павел Д.', text:'Отличный сервис, билеты оформили моментально. Сам музей превзошёл ожидания!', link:'#'},
+      {place:'2ГИС', name:'Екатерина и Игорь', text:'Покупка билетов заняла пару минут. Очень удобно, что можно выбрать время онлайн.', link:'#'},
+    ];
+    showSlider(buyTicketReviews.map(r=>({...r, isReview:true})));
+  }, 500);
+  
+  setTimeout(()=>showDatePicker('excursion'), 600);
   addBackBtn(goBack);
 }
 
@@ -211,6 +222,17 @@ function screen_excursion() {
 function screen_faq() {
   pushHistory('main', showMainMenu);
   addBotMessage('Я очень внимательно собираю вопросы от друзей темноты и всех, кто хотел бы ими стать. Ниже самые часто задаваемые вопросы:');
+  
+  // Добавляем слайдер с отзывами о FAQ
+  setTimeout(()=>{
+    const faqReviews = [
+      {place:'Яндекс Карты', name:'Виктория Л.', text:'Очень подробные ответы на все вопросы! Помогли решиться на посещение музея.', link:'#'},
+      {place:'Google Maps', name:'Максим Р.', text:'Чат-бот ответил на все мои сомнения. Оказалось, всё абсолютно безопасно!', link:'#'},
+      {place:'2ГИС', name:'Елена К.', text:'Понравилось, что можно задать любой вопрос и получить развёрнутый ответ.', link:'#'},
+    ];
+    showSlider(faqReviews.map(r=>({...r, isReview:true})));
+  }, 500);
+  
   addButtons([
     {label:'А как это проходит?', color:'yellow', action:()=>faq_how()},
     {label:'Какие форматы ещё есть?', color:'green', action:()=>faq_formats()},
@@ -288,6 +310,17 @@ function faq_other() {
 function screen_dates() {
   pushHistory('main', showMainMenu);
   addBotMessage('Свидание в темноте — это особенный формат для двоих 💛 В темноте остаётся главное — голос, прикосновения, эмоции и внимание друг к другу. Такое свидание не сравнить с рестораном или кино. Его часто выбирают пары, которые хотят чего-то настоящего и необычного 😏 Давайте подберём день и время, чтобы всё сложилось идеально?');
+  
+  // Добавляем слайдер с отзывами о свиданиях
+  setTimeout(()=>{
+    const datesReviews = [
+      {place:'Яндекс Карты', name:'Анна и Михаил', text:'Самое необычное свидание в нашей жизни! Темнота сближает невероятно — начинаешь по-настоящему слышать и чувствовать партнёра.', link:'#'},
+      {place:'2ГИС', name:'Дарья К.', text:'Ходили с мужем на годовщину. Впечатления на весь год вперёд! Гид был чудесным, всё очень продумано.', link:'#'},
+      {place:'Google Maps', name:'Никита и Вика', text:'Незабываемо! Рекомендуем всем парам, которые хотят чего-то по-настоящему нового.', link:'#'},
+    ];
+    showSlider(datesReviews.map(r=>({...r, isReview:true})));
+  }, 500);
+  
   addButtons([
     {label:'Смотреть отзывы', color:'green', action:()=>{clearButtons();screen_reviews('dates');}},
     {label:'Выбрать дату', color:'yellow', action:()=>{clearButtons();addBotMessage('Отлично! Выбираем дату для вашего свидания:');setTimeout(()=>showDatePickerDates(), 400);}},
@@ -369,6 +402,17 @@ function submitLead() {
 function screen_events() {
   pushHistory('main', showMainMenu);
   addBotMessage('В «Сенсориуме» мероприятия — это не просто развлечения. Это форматы, где по-настоящему включаются чувства, внимание и живое общение. Выберите, что вам сейчас ближе:');
+  
+  // Добавляем слайдер с отзывами о мероприятиях
+  setTimeout(()=>{
+    const eventsReviews = [
+      {place:'Яндекс Карты', name:'Ольга С.', text:'Посетили мастер-класс в темноте — это нечто невероятное! Руки начинают чувствовать то, что раньше не замечали.', link:'#'},
+      {place:'Google Maps', name:'Дмитрий К.', text:'Мафия в темноте — лучший тимбилдинг для нашей команды! Эмоции зашкаливают, рекомендую всем!', link:'#'},
+      {place:'2ГИС', name:'Анна и Сергей', text:'Чайная церемония в темноте открыла нам новые грани вкуса. Очень атмосферно и расслабляюще.', link:'#'},
+    ];
+    showSlider(eventsReviews.map(r=>({...r, isReview:true})));
+  }, 500);
+  
   addButtons([
     {label:'Корпоративы', color:'blue', action:()=>{clearButtons();screen_corporate();}},
     {label:'Детям', color:'green', action:()=>{clearButtons();screen_operator();}},
