@@ -37,10 +37,7 @@ function showMainMenu() {
     {label:'Приобрести билет', color:'yellow', action:()=>screen_buyTicket()},
     {label:'Отзывы друзей в темноте', color:'green', action:()=>screen_reviews('general')},
     {label:'Об исследованиях темноты', color:'blue', action:()=>screen_research()},
-    {label:'Всё об экскурсии', color:'pink', action:()=>screen_excursion()},
     {label:'Ответы на важные вопросы', color:'yellow', action:()=>screen_faq()},
-    {label:'Свидания', color:'pink', action:()=>screen_dates()},
-    {label:'Мероприятия', color:'green', action:()=>screen_events()},
     {label:'Вызвать оператора', color:'blue', action:()=>screen_operator()},
   ];
   addButtons(buttons);
@@ -392,7 +389,6 @@ function screen_events() {
   addButtons([
     {label:'Корпоративы', color:'blue', action:()=>{clearButtons();screen_corporate();}},
     {label:'Детям', color:'green', action:()=>{clearButtons();screen_operator();}},
-    {label:'Мероприятия', color:'yellow', action:()=>{clearButtons();screen_eventsList();}},
   ]);
   addBackBtn(()=>{clearChat();showMainMenu();});
 }
