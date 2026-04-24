@@ -1,1 +1,1 @@
-Nothing needs to be added to .gitignore since the changes only include documentation files (README.md and USER_GUIDE.md) which are source/config files and not build artifacts, dependencies, or temporary files.
+Nothing needs to be added to .gitignore since the changes only include source/config files (.md and .js) without any build artifacts, dependencies, or temporary files that should be ignored.

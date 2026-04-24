@@ -54,7 +54,7 @@ function screen_buyTicket(dateLabel) {
   }, 500);
   
   setTimeout(()=>showDatePicker('excursion'), 600);
-  addBackBtn(goBack);
+  addBackBtn(()=>{clearChat();showMainMenu();});
 }
 
 function showDatePicker(type) {
@@ -136,7 +136,7 @@ function confirmBooking() {}
 
 // ---- Screen: Reviews ----
 function screen_reviews(type) {
-  pushHistory('main', showMainMenu);
+  clearChat();
   const title = type === 'dates' ? 'Вот несколько отзывов по свиданиям для самых любопытных' : 'Наша средняя оценка в отзовиках — 5 баллов. Вот несколько отзывов для самых любопытных';
   addBotMessage(title);
   const reviews = type === 'dates' ? [
@@ -150,12 +150,12 @@ function screen_reviews(type) {
     {place:'TripAdvisor', name:'Иван Л.', text:'Пять пространств — пять разных ощущений. Экскурсия меняет восприятие мира. Советую всем.', link:'#'},
   ];
   showSlider(reviews.map(r=>({...r, isReview:true})));
-  addBackBtn(goBack);
+  addBackBtn(()=>{clearChat();showMainMenu();});
 }
 
 // ---- Screen: Research ----
 function screen_research() {
-  pushHistory('main', showMainMenu);
+  clearChat();
   addBotMessage('Мы сотрудничаем с лучшими психологами, чтобы отдых у нас был незабываемым и полезным для гостей. После посещения Сенсориума мы пришлём анкету-исследование состояния. А пока вот несколько исследований, которые помогут сделать уверенный выбор.');
   const items = [
     {title:'Мелатонин и темнота', text:'Мозг вырабатывает мелатонин почти исключительно в темноте. Он регулирует восстановление клеток, иммунитет и процессы старения.', isResearch:true},
@@ -172,12 +172,12 @@ function screen_research() {
       {label:'Свидание в темноте', color:'pink', action:()=>screen_dates()},
     ]);
   }, 600);
-  addBackBtn(goBack);
+  addBackBtn(()=>{clearChat();showMainMenu();});
 }
 
 // ---- Screen: Excursion ----
 function screen_excursion() {
-  pushHistory('main', showMainMenu);
+  clearChat();
   addBotMessage('Интерактивная экскурсия в темноте меняет восприятие своих и чужих возможностей! Час пролетит как 15 минут. За это время вы посетите целых 5 пространств: жилую квартиру-студию, продуктовый магазин, античный сад, спортзал и комнату для релакса и дегустации — в эталонной темноте! Узнайте, каково это, когда все чувства работают на полную мощь 😏');
   
   // Добавляем слайдер с отзывами об экскурсии
@@ -215,12 +215,12 @@ function screen_excursion() {
       {label:'Нет, спасибо', color:'', action:()=>{clearButtons();addUserMessage('Нет, спасибо');showMainMenu();}},
     ]);
   }, 1200);
-  addBackBtn(goBack);
+  addBackBtn(()=>{clearChat();showMainMenu();});
 }
 
 // ---- Screen: FAQ ----
 function screen_faq() {
-  pushHistory('main', showMainMenu);
+  clearChat();
   addBotMessage('Я очень внимательно собираю вопросы от друзей темноты и всех, кто хотел бы ими стать. Ниже самые часто задаваемые вопросы:');
   
   // Добавляем слайдер с отзывами о FAQ
@@ -240,7 +240,7 @@ function screen_faq() {
     {label:'Это безопасно?', color:'pink', action:()=>faq_safe()},
     {label:'Другой вопрос', color:'', action:()=>faq_other()},
   ]);
-  addBackBtn(goBack);
+  addBackBtn(()=>{clearChat();showMainMenu();});
 }
 
 function faq_how() {
@@ -248,7 +248,7 @@ function faq_how() {
   addUserMessage('А как это проходит?');
   addBotMessage('Большинство форматов в «Сенсориуме» проходят в эталонной темноте в сопровождении проводника. Пространство безопасное и продуманное, а внимание постепенно переключается с внешнего мира на ощущения, звук и взаимодействие. Время в темноте ощущается совсем иначе — час пролетает как 15 минут!');
   addButtons([{label:'← Другие вопросы', color:'', action:()=>{clearButtons();screen_faq();}}]);
-  addBackBtn(goBack);
+  addBackBtn(()=>{clearChat();showMainMenu();});
 }
 
 function faq_formats() {
@@ -256,7 +256,7 @@ function faq_formats() {
   addUserMessage('Какие форматы ещё есть?');
   addBotMessage('Отлично, рада, что вам интересно 💛 В «Сенсориуме» есть несколько форматов — под разный повод и компанию. Выберите формат, который вам сейчас ближе, а я подскажу детали и помогу с записью.');
   setTimeout(()=>screen_events(), 500);
-  addBackBtn(goBack);
+  addBackBtn(()=>{clearChat();showMainMenu();});
 }
 
 function faq_video() {
@@ -273,7 +273,7 @@ function faq_video() {
   msgs.appendChild(wrap);
   scrollBottom();
   addButtons([{label:'← Другие вопросы', color:'', action:()=>{clearButtons();screen_faq();}}]);
-  addBackBtn(goBack);
+  addBackBtn(()=>{clearChat();showMainMenu();});
 }
 
 function faq_safe() {
@@ -281,7 +281,7 @@ function faq_safe() {
   addUserMessage('Это безопасно?');
   addBotMessage('Да, абсолютно. Пространство музея продумано и адаптировано к передвижениям в темноте. Все мероприятия проходят в сопровождении проводников. Здесь нет резких элементов или неожиданностей, а формат создавался при участии экспертов и инклюзивных организаций.');
   addButtons([{label:'← Другие вопросы', color:'', action:()=>{clearButtons();screen_faq();}}]);
-  addBackBtn(goBack);
+  addBackBtn(()=>{clearChat();showMainMenu();});
 }
 
 function faq_other() {
@@ -301,14 +301,14 @@ function faq_other() {
     addUserMessage(f.q);
     addBotMessage(f.a);
     addButtons([{label:'← Другие вопросы', color:'', action:()=>{clearButtons();screen_faq();}}]);
-    addBackBtn(goBack);
+    addBackBtn(()=>{clearChat();showMainMenu();});
   }})));
-  addBackBtn(goBack);
+  addBackBtn(()=>{clearChat();showMainMenu();});
 }
 
 // ---- Screen: Dates ----
 function screen_dates() {
-  pushHistory('main', showMainMenu);
+  clearChat();
   addBotMessage('Свидание в темноте — это особенный формат для двоих 💛 В темноте остаётся главное — голос, прикосновения, эмоции и внимание друг к другу. Такое свидание не сравнить с рестораном или кино. Его часто выбирают пары, которые хотят чего-то настоящего и необычного 😏 Давайте подберём день и время, чтобы всё сложилось идеально?');
   
   // Добавляем слайдер с отзывами о свиданиях
@@ -326,7 +326,7 @@ function screen_dates() {
     {label:'Выбрать дату', color:'yellow', action:()=>{clearButtons();addBotMessage('Отлично! Выбираем дату для вашего свидания:');setTimeout(()=>showDatePickerDates(), 400);}},
     {label:'Персональный сценарий', color:'pink', action:()=>{clearButtons();screen_personal('dates');}},
   ]);
-  addBackBtn(goBack);
+  addBackBtn(()=>{clearChat();showMainMenu();});
 }
 
 function showDatePickerDates() {
@@ -335,13 +335,13 @@ function showDatePickerDates() {
 
 // ---- Screen: Personal scenario ----
 function screen_personal(type) {
-  pushHistory('main', showMainMenu);
+  clearChat();
   addBotMessage('Мы делаем более персональный сценарий и дополнительные элементы под вашу пару, квест, цветы, шары — всё как хотите. Это формат «вау» под повод: годовщина, сюрприз, предложение.');
   addButtons([
     {label:'Хочу узнать подробнее! Оставить заявку', color:'yellow', action:()=>{clearButtons();showLeadForm();}},
     {label:'📞 Переключить на оператора', color:'blue', action:()=>{clearButtons();screen_operator();}},
   ]);
-  addBackBtn(goBack);
+  addBackBtn(()=>{clearChat();showMainMenu();});
 }
 
 function showLeadForm() {
@@ -400,7 +400,7 @@ function submitLead() {
 
 // ---- Screen: Events ----
 function screen_events() {
-  pushHistory('main', showMainMenu);
+  clearChat();
   addBotMessage('В «Сенсориуме» мероприятия — это не просто развлечения. Это форматы, где по-настоящему включаются чувства, внимание и живое общение. Выберите, что вам сейчас ближе:');
   
   // Добавляем слайдер с отзывами о мероприятиях
@@ -418,21 +418,21 @@ function screen_events() {
     {label:'Детям', color:'green', action:()=>{clearButtons();screen_operator();}},
     {label:'Мероприятия', color:'yellow', action:()=>{clearButtons();screen_eventsList();}},
   ]);
-  addBackBtn(goBack);
+  addBackBtn(()=>{clearChat();showMainMenu();});
 }
 
 function screen_corporate() {
-  pushHistory('main', showMainMenu);
+  clearChat();
   addBotMessage('Корпоративные мероприятия в «Сенсориуме» — это командный опыт, который объединяет и вдохновляет. Мы вмещаем до 120 человек на комбинированных мероприятиях и делаем их под ключ!');
   addButtons([
     {label:'Хочу узнать подробнее! Оставить заявку', color:'yellow', action:()=>{clearButtons();showLeadForm();}},
     {label:'📞 Переключить на оператора', color:'blue', action:()=>{clearButtons();screen_operator();}},
   ]);
-  addBackBtn(goBack);
+  addBackBtn(()=>{clearChat();showMainMenu();});
 }
 
 function screen_eventsList() {
-  pushHistory('main', showMainMenu);
+  clearChat();
   addBotMessage('Выберите мероприятие, которое вас интересует:');
   addButtons([
     {label:'Мафия в темноте', color:'yellow', action:()=>{clearButtons();screen_event('mafia');}},
@@ -442,7 +442,7 @@ function screen_eventsList() {
     {label:'Гербарий в стекле', color:'green', action:()=>{clearButtons();screen_event('herbarium');}},
     {label:'Чайная церемония в темноте', color:'yellow', action:()=>{clearButtons();screen_event('tea');}},
   ]);
-  addBackBtn(goBack);
+  addBackBtn(()=>{clearChat();showMainMenu();});
 }
 
 const eventTexts = {
@@ -465,7 +465,7 @@ function screen_event(type) {
       {label:'📞 Переключить на оператора', color:'blue', action:()=>{clearButtons();screen_operator();}},
     ]);
   }}]);
-  addBackBtn(goBack);
+  addBackBtn(()=>{clearChat();showMainMenu();});
 }
 
 // ---- Screen: Operator ----
@@ -490,11 +490,11 @@ function screen_operator() {
           {label:'❌ Нет', color:'pink', action:()=>{clearButtons();addUserMessage('Нет');screen_operator();}},
           {label:'✍️ Оставить отзыв', color:'yellow', action:()=>{clearButtons();addUserMessage('Оставить отзыв');addBotMessage('Пожалуйста, напишите ваш отзыв в поле ввода ниже. Мы обязательно его рассмотрим!');}}
         ]);
-        addBackBtn(goBack);
+        addBackBtn(()=>{clearChat();showMainMenu();});
       }, 1500);
     }},
   ]);
-  addBackBtn(goBack);
+  addBackBtn(()=>{clearChat();showMainMenu();});
 }
 
 // ---- Helpers ----
