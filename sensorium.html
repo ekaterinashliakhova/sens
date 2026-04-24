@@ -523,7 +523,7 @@ function showMainMenu() {
     {label:'🌑 Всё об экскурсии', color:'pink', action:()=>screen_excursion()},
     {label:'❓ Ответы на важные вопросы', color:'yellow', action:()=>screen_faq()},
     {label:'💛 Свидания', color:'pink', action:()=>screen_dates()},
-    {label:'🎭 Мероприятия', color:'green', action:()=>screen_events()},
+    {label:'Мероприятия', color:'green', action:()=>screen_events()},
     {label:'📞 Вызвать оператора', color:'blue', action:()=>screen_operator()},
   ];
   addButtons(buttons);
@@ -767,7 +767,7 @@ function screen_dates() {
   addButtons([
     {label:'⭐ Смотреть отзывы', color:'green', action:()=>{clearButtons();screen_reviews('dates');}},
     {label:'📅 Выбрать дату', color:'yellow', action:()=>{clearButtons();addBotMessage('Отлично! Выбираем дату для вашего свидания:');setTimeout(()=>showDatePickerDates(), 400);}},
-    {label:'✨ Персональный сценарий', color:'pink', action:()=>{clearButtons();screen_personal('dates');}},
+    {label:'Персональный сценарий', color:'pink', action:()=>{clearButtons();screen_personal('dates');}},
   ]);
   addBackBtn(goBack);
 }
@@ -780,7 +780,7 @@ function showDatePickerDates() {
 function screen_personal(type) {
   addBotMessage('Мы делаем более персональный сценарий и дополнительные элементы под вашу пару, квест, цветы, шары — всё как хотите. Это формат «вау» под повод: годовщина, сюрприз, предложение.');
   addButtons([
-    {label:'🌟 Хочу узнать подробнее! Оставить заявку', color:'yellow', action:()=>{clearButtons();showLeadForm();}},
+    {label:'Хочу узнать подробнее! Оставить заявку', color:'yellow', action:()=>{clearButtons();showLeadForm();}},
     {label:'📞 Переключить на оператора', color:'blue', action:()=>{clearButtons();screen_operator();}},
   ]);
 }
@@ -817,7 +817,7 @@ function screen_events() {
   addButtons([
     {label:'🏢 Корпоративы', color:'blue', action:()=>{clearButtons();screen_corporate();}},
     {label:'👦 Детям', color:'green', action:()=>{clearButtons();screen_operator();}},
-    {label:'🎭 Мероприятия', color:'yellow', action:()=>{clearButtons();screen_eventsList();}},
+    {label:'Мероприятия', color:'yellow', action:()=>{clearButtons();screen_eventsList();}},
   ]);
   addBackBtn(goBack);
 }
@@ -825,7 +825,7 @@ function screen_events() {
 function screen_corporate() {
   addBotMessage('Корпоративные мероприятия в «Сенсориуме» — это командный опыт, который объединяет и вдохновляет. Мы вмещаем до 120 человек на комбинированных мероприятиях и делаем их под ключ!');
   addButtons([
-    {label:'🌟 Хочу узнать подробнее! Оставить заявку', color:'yellow', action:()=>{clearButtons();showLeadForm();}},
+    {label:'Хочу узнать подробнее! Оставить заявку', color:'yellow', action:()=>{clearButtons();showLeadForm();}},
     {label:'📞 Переключить на оператора', color:'blue', action:()=>{clearButtons();screen_operator();}},
   ]);
 }
@@ -833,8 +833,8 @@ function screen_corporate() {
 function screen_eventsList() {
   addBotMessage('Выберите мероприятие, которое вас интересует:');
   addButtons([
-    {label:'🎭 Мафия в темноте', color:'yellow', action:()=>{clearButtons();screen_event('mafia');}},
-    {label:'🎨 Мастер-классы в темноте', color:'pink', action:()=>{clearButtons();screen_event('masterclass');}},
+    {label:'Мафия в темноте', color:'yellow', action:()=>{clearButtons();screen_event('mafia');}},
+    {label:'Мастер-классы в темноте', color:'pink', action:()=>{clearButtons();screen_event('masterclass');}},
     {label:'🧘 Медитация в темноте', color:'green', action:()=>{clearButtons();screen_event('meditation');}},
     {label:'✍️ Чтение и письмо по Брайлю', color:'blue', action:()=>{clearButtons();screen_event('braille');}},
     {label:'🌿 Гербарий в стекле', color:'green', action:()=>{clearButtons();screen_event('herbarium');}},
@@ -857,7 +857,7 @@ function screen_event(type) {
     clearButtons();
     addUserMessage('Интересно!');
     addButtons([
-      {label:'🌟 Хочу узнать подробнее! Оставить заявку', color:'yellow', action:()=>{clearButtons();showLeadForm();}},
+      {label:'Хочу узнать подробнее! Оставить заявку', color:'yellow', action:()=>{clearButtons();showLeadForm();}},
       {label:'📞 Переключить на оператора', color:'blue', action:()=>{clearButtons();screen_operator();}},
     ]);
   }}]);
