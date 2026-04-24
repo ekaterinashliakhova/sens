@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Сенсориум</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <span class="site-logo">Сенсориум</span>
+</header>
+
+<!-- Chat trigger -->
+<div class="chat-trigger" id="chatTrigger" onclick="toggleChat()">
+  <div class="chat-trigger-label" id="triggerLabel">Я Лена, могу тебе чем‑то помочь и ответить на вопрос!</div>
+  <div class="chat-trigger-avatar">
+    <img src="lena-avatar.jpg" alt="Лена">
+  </div>
+</div>
+
+<!-- Chat window -->
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <div class="chat-header-avatar">
+      <img src="lena-avatar.jpg" alt="Лена" id="headerAvatarImg">
+    </div>
+    <div class="chat-header-info">
+      <div class="chat-header-name">Лена</div>
+      <div class="chat-header-sub">Гид музея «Сенсориум»</div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+
+  <div class="chat-messages" id="chatMessages"></div>
+
+  <div class="chat-input-area">
+    <textarea class="chat-input" id="chatInput" placeholder="Написать сообщение..." rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+    <button class="send-btn" onclick="sendUserMessage()">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
