@@ -26,14 +26,14 @@ function startChat() {
 function showMainMenu() {
   currentScreen = 'main';
   const buttons = [
-    {label:'🎟 Приобрести билет', color:'yellow', action:()=>screen_buyTicket()},
-    {label:'⭐ Отзывы друзей в темноте', color:'green', action:()=>screen_reviews('general')},
-    {label:'🔬 Об исследованиях темноты', color:'blue', action:()=>screen_research()},
-    {label:'🌑 Всё об экскурсии', color:'pink', action:()=>screen_excursion()},
-    {label:'❓ Ответы на важные вопросы', color:'yellow', action:()=>screen_faq()},
-    {label:'💛 Свидания', color:'pink', action:()=>screen_dates()},
+    {label:'Приобрести билет', color:'yellow', action:()=>screen_buyTicket()},
+    {label:'Отзывы друзей в темноте', color:'green', action:()=>screen_reviews('general')},
+    {label:'Об исследованиях темноты', color:'blue', action:()=>screen_research()},
+    {label:'Всё об экскурсии', color:'pink', action:()=>screen_excursion()},
+    {label:'Ответы на важные вопросы', color:'yellow', action:()=>screen_faq()},
+    {label:'Свидания', color:'pink', action:()=>screen_dates()},
     {label:'Мероприятия', color:'green', action:()=>screen_events()},
-    {label:'📞 Вызвать оператора', color:'blue', action:()=>screen_operator()},
+    {label:'Вызвать оператора', color:'blue', action:()=>screen_operator()},
   ];
   addButtons(buttons);
 }
@@ -159,8 +159,8 @@ function screen_research() {
   setTimeout(()=>{
     addBotMessage('Если вы готовы испробовать все эти эффекты на себе, приглашаем вас в мир удивительной темноты!');
     addButtons([
-      {label:'🎟 Приобрести билет', color:'yellow', action:()=>screen_buyTicket()},
-      {label:'💛 Свидание в темноте', color:'pink', action:()=>screen_dates()},
+      {label:'Приобрести билет', color:'yellow', action:()=>screen_buyTicket()},
+      {label:'Свидание в темноте', color:'pink', action:()=>screen_dates()},
     ]);
   }, 600);
   addBackBtn(goBack);
@@ -184,8 +184,8 @@ function screen_excursion() {
               addUserMessage('Да, хочу сыграть!');
               addBotMessage('Отлично! Тогда предлагаю определиться с билетами. Какое из мероприятий вы хотите посетить?');
               addButtons([
-                {label:'🎟 Приобрести билет', color:'yellow', action:()=>screen_buyTicket()},
-                {label:'💛 Свидание в темноте', color:'pink', action:()=>screen_dates()},
+                {label:'Приобрести билет', color:'yellow', action:()=>screen_buyTicket()},
+                {label:'Свидание в темноте', color:'pink', action:()=>screen_dates()},
               ]);
             }},
             {label:'Нет, спасибо', color:'', action:()=>{clearButtons();addUserMessage('Нет, спасибо');showMainMenu();}},
@@ -274,8 +274,8 @@ function screen_dates() {
   pushHistory('main', showMainMenu);
   addBotMessage('Свидание в темноте — это особенный формат для двоих 💛 В темноте остаётся главное — голос, прикосновения, эмоции и внимание друг к другу. Такое свидание не сравнить с рестораном или кино. Его часто выбирают пары, которые хотят чего-то настоящего и необычного 😏 Давайте подберём день и время, чтобы всё сложилось идеально?');
   addButtons([
-    {label:'⭐ Смотреть отзывы', color:'green', action:()=>{clearButtons();screen_reviews('dates');}},
-    {label:'📅 Выбрать дату', color:'yellow', action:()=>{clearButtons();addBotMessage('Отлично! Выбираем дату для вашего свидания:');setTimeout(()=>showDatePickerDates(), 400);}},
+    {label:'Смотреть отзывы', color:'green', action:()=>{clearButtons();screen_reviews('dates');}},
+    {label:'Выбрать дату', color:'yellow', action:()=>{clearButtons();addBotMessage('Отлично! Выбираем дату для вашего свидания:');setTimeout(()=>showDatePickerDates(), 400);}},
     {label:'Персональный сценарий', color:'pink', action:()=>{clearButtons();screen_personal('dates');}},
   ]);
   addBackBtn(goBack);
@@ -324,8 +324,8 @@ function screen_events() {
   pushHistory('main', showMainMenu);
   addBotMessage('В «Сенсориуме» мероприятия — это не просто развлечения. Это форматы, где по-настоящему включаются чувства, внимание и живое общение. Выберите, что вам сейчас ближе:');
   addButtons([
-    {label:'🏢 Корпоративы', color:'blue', action:()=>{clearButtons();screen_corporate();}},
-    {label:'👦 Детям', color:'green', action:()=>{clearButtons();screen_operator();}},
+    {label:'Корпоративы', color:'blue', action:()=>{clearButtons();screen_corporate();}},
+    {label:'Детям', color:'green', action:()=>{clearButtons();screen_operator();}},
     {label:'Мероприятия', color:'yellow', action:()=>{clearButtons();screen_eventsList();}},
   ]);
   addBackBtn(goBack);
@@ -344,10 +344,10 @@ function screen_eventsList() {
   addButtons([
     {label:'Мафия в темноте', color:'yellow', action:()=>{clearButtons();screen_event('mafia');}},
     {label:'Мастер-классы в темноте', color:'pink', action:()=>{clearButtons();screen_event('masterclass');}},
-    {label:'🧘 Медитация в темноте', color:'green', action:()=>{clearButtons();screen_event('meditation');}},
-    {label:'✍️ Чтение и письмо по Брайлю', color:'blue', action:()=>{clearButtons();screen_event('braille');}},
-    {label:'🌿 Гербарий в стекле', color:'green', action:()=>{clearButtons();screen_event('herbarium');}},
-    {label:'☕ Чайная церемония в темноте', color:'yellow', action:()=>{clearButtons();screen_event('tea');}},
+    {label:'Медитация в темноте', color:'green', action:()=>{clearButtons();screen_event('meditation');}},
+    {label:'Чтение и письмо по Брайлю', color:'blue', action:()=>{clearButtons();screen_event('braille');}},
+    {label:'Гербарий в стекле', color:'green', action:()=>{clearButtons();screen_event('herbarium');}},
+    {label:'Чайная церемония в темноте', color:'yellow', action:()=>{clearButtons();screen_event('tea');}},
   ]);
 }
 
@@ -558,8 +558,8 @@ function handleTextInput(text) {
   } else if (lower.includes('цена') || lower.includes('стоимост') || lower.includes('сколько стоит')) {
     addBotMessage('Цена посещения начинается от 1500₽. Хотите выбрать дату и забронировать?');
     addButtons([
-      {label:'🎟 Приобрести билет', color:'yellow', action:()=>screen_buyTicket()},
-      {label:'🏠 Главное меню', color:'', action:()=>{clearChat();startChat();}},
+      {label:'Приобрести билет', color:'yellow', action:()=>screen_buyTicket()},
+      {label:'Главное меню', color:'', action:()=>{clearChat();startChat();}},
     ]);
   } else if (lower.includes('привет') || lower.includes('здравствуй') || lower.includes('hello')) {
     addBotMessage('Привет! Рада тебя видеть 💛 Чем могу помочь?');
