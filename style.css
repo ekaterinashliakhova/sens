@@ -267,6 +267,9 @@ body {
 .research-card { background: var(--green); border-color: var(--green-dark); }
 .research-card .slider-card-title { color: #388E3C; }
 
+/* Stars for reviews */
+.stars { color: #F0C842; font-size: 13px; margin-bottom: 4px; }
+
 /* Date picker mock */
 .date-picker {
   margin-left: 40px;
